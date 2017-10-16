@@ -33,6 +33,8 @@ These steps only need to be done once per user:
 > . ~/your_domain/env/bin/activate
 * Deactivate the virtual environment
 > deactivate
+* Restart Passenger / Django
+> touch ~/your_domain/tmp/restart.txt
 * Static files
 > collectstatic.sh
    
