@@ -1,5 +1,5 @@
 # DreamhostDjango
-### Scripts to automate setting up a Django website on Dreamhost
+### Start a new Django website on Dreamhost with a single command!
 
 ## Prerequisites:
 1. A Dreamhost account with hosting plan
