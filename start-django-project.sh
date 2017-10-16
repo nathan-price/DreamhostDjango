@@ -24,20 +24,20 @@ else
 	exit
 fi
 pip install django mysqlclient
-echo -e "Enter project name:"
+echo -e "Enter a name to use for the Django project:"
 read projectname
 django-admin startproject $projectname
 cd $projectname/$projectname
 sed -i -e "s:ALLOWED_HOSTS = \[\]:ALLOWED_HOSTS = \['$domain'\]:g" settings.py
 perl -i -pe "s/'ENGINE'.*'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),/replace_string/g" settings.py
 echo -e "STATIC_ROOT = os.path.dirname(BASE_DIR) + '/public/static/'" >> settings.py
-echo -e "Enter database name:"
+echo -e "Enter database name (from dreamhost panel):"
 read databasename
-echo -e "Enter database username:"
+echo -e "Enter database username (from dreamhost panel):"
 read username
-echo -e "Enter database password:"
+echo -e "Enter database password (from dreamhost panel):"
 read password
-echo -e "Enter database host url:"
+echo -e "Enter database host url (from dreamhost panel):"
 read dhosturl
 echo -e "
         'ENGINE': 'django.db.backends.mysql'," > tmp.txt
@@ -59,3 +59,6 @@ if [ ! -d "tmp" ]; then
 fi
 touch tmp/restart.txt
 cp $projectname/$projectname/settings.py tmp/settings.py
+cd $projectname
+collectstatic.sh
+migrate.sh
