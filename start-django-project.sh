@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd $HOME
-echo "Enter Domain (your_domain.com)"
+echo -e "Enter Domain (your_domain.com)"
 read domain
 if [ ! -d "$domain" ]; then
 	mkdir $domain
@@ -60,5 +60,6 @@ fi
 touch tmp/restart.txt
 cp $projectname/$projectname/settings.py tmp/settings.py
 cd $projectname
+createsuperuser.sh
 collectstatic.sh
 migrate.sh
