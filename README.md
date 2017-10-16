@@ -13,6 +13,7 @@
    Make sure you know the hostname for database (the url), as well as the name of the database, and a username and password with access to the database.
 
 ## First-time Setup
+These steps only need to be done once per user:
 1. SSH into your dreamhost server
 2. Clone this repository
 > git clone https://github.com/nathan-price/DreamhostDjango.git
@@ -21,6 +22,23 @@
 4. Install desired python version (latest version at time of writing is: 3.6.2)
 > install-python-version.sh
 
-## Start Django Project
+## Start A Django Project
 1. Run the script
 > start-django-project.sh
+
+   This will automatically set up your project folders, create and enter a new virtual envirnment, install Django into the envirnment, configure the django settings.py for Dreamhost, and configure Passenger for Django.
+
+## Information
+* Activate the virtual environment
+> . ~/your_domain/env/bin/activate
+* Deactivate the virtual environment
+> deactivate
+* Static files
+> collectstatic.sh
+   
+   Type this instead of python manage.py collectstatic to avoid the confirmation prompt.
+   
+* Migrations
+> migrate.sh
+
+   This will automatically execute python manage.py makemigrations, followed by python manage.py migrate.
