@@ -1,12 +1,14 @@
 #!/bin/bash
 
 path='$PATH'
-folder="PATH=`dirname $BASH_SOURCE`:$path"
-prof=`readlink $folder`
-if ! grep -q $prof "$HOME/.bash_profile"; then
-	echo $prof >> $HOME/.bash_profile
+home='$HOME'
+folder=`dirname $BASH_SOURCE`
+full="$HOME/$folder"
+append="PATH=$home/$folder:$path"
+if ! grep -q $append "$HOME/.bash_profile"; then
+	echo $append >> $HOME/.bash_profile
 	. $HOME/.bash_profile
 fi
-for filename in prof/*.sh; do
+for filename in $full/*.sh; do
 	chmod +x $filename
 done
